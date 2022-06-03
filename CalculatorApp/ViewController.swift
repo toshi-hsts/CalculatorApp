@@ -38,6 +38,7 @@ class ViewController: UIViewController {
         calculatorCollectionView.backgroundColor = .clear
         calculatorCollectionView.contentInset = .init(top: 0, left: 14, bottom: 0, right: 14)
         view.backgroundColor = .black
+        numberLabel.text = "0"
     }
     
     private func clear(){
@@ -45,6 +46,14 @@ class ViewController: UIViewController {
         secondNumber = ""
         numberLabel.text = "0"
         calcurateStatus = .none
+    }
+    
+    private func confirmIncludeDecimalPoint() -> Bool{
+        if firstNumber.range(of: ".") != nil || firstNumber.count == 0{
+            return true
+        }else{
+            return false
+        }
     }
 }
 
@@ -58,6 +67,15 @@ extension ViewController: UICollectionViewDelegate {
             case "0"..."9":
                 firstNumber += number
                 numberLabel.text = firstNumber
+                
+                if firstNumber.hasPrefix("0"){
+                    firstNumber = ""
+                }
+            case ".":
+                if !confirmIncludeDecimalPoint(){
+                    firstNumber += number
+                    numberLabel.text = firstNumber
+                }
             case "+":
                 calcurateStatus = .plus
             case "-":
@@ -76,24 +94,46 @@ extension ViewController: UICollectionViewDelegate {
             case "0"..."9":
                 secondNumber += number
                 numberLabel.text = secondNumber
+                
+                if secondNumber.hasPrefix("0"){
+                    secondNumber = ""
+                }
+                
+            case ".":
+                if !confirmIncludeDecimalPoint(){
+                    secondNumber += number
+                    numberLabel.text = secondNumber
+                }
             case "=":
-                
-                
                 let firstNum = Double(firstNumber) ?? 0
                 let secondNum = Double(secondNumber) ?? 0
                 
+                var resultString: String?
+                
                 switch calcurateStatus {
                 case .plus:
-                    numberLabel.text = String(firstNum + secondNum)
+                    resultString = String(firstNum + secondNum)
                 case .minus:
-                    numberLabel.text = String(firstNum - secondNum)
+                    resultString = String(firstNum - secondNum)
                 case .multiplication:
-                    numberLabel.text = String(firstNum * secondNum)
+                    resultString = String(firstNum * secondNum)
                 case .division:
-                    numberLabel.text = String(firstNum / secondNum)
+                    resultString = String(firstNum / secondNum)
                 default:
                     break
                 }
+                
+                if let result = resultString, result.hasSuffix(".0"){
+                    resultString = result.replacingOccurrences(of: ".0", with: "")
+                }
+                
+                numberLabel.text = resultString
+                firstNumber = ""
+                secondNumber = ""
+                
+                firstNumber += resultString ?? ""
+                calcurateStatus = .none
+                
             case "C":
                 clear()
             default:

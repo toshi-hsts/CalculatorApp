@@ -27,6 +27,16 @@ class CollectionViewCell: UICollectionViewCell {
         numberLabel.layer.cornerRadius = self.frame.height / 2
     }
     
+    override var isHighlighted: Bool{
+        didSet {
+            if isHighlighted {
+                numberLabel.alpha = 0.3
+            }else{
+                numberLabel.alpha = 1.0
+            }
+        }
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
