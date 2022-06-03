@@ -19,7 +19,7 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hOF-fO-nYu">
                                 <rect key="frame" x="0.0" y="462" width="414" height="400"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="400" id="Scr-Fp-d65"/>
                                 </constraints>
@@ -63,7 +63,7 @@
                     </view>
                     <connections>
                         <outlet property="calculatorCollectionView" destination="hOF-fO-nYu" id="336-Km-LSH"/>
-                        <outlet property="calculatorHeightConstraint" destination="gU5-3b-YjH" id="chW-ji-qoR"/>
+                        <outlet property="calculatorHeightConstraint" destination="Scr-Fp-d65" id="Fi7-Ia-wBZ"/>
                         <outlet property="numberLabel" destination="hG4-0h-dKF" id="b4B-pn-p53"/>
                     </connections>
                 </viewController>
@@ -75,6 +75,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

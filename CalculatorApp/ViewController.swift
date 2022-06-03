@@ -27,7 +27,7 @@ class ViewController: UIViewController {
         calculatorCollectionView.delegate = self
         calculatorCollectionView.dataSource = self
         calculatorCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cellId")
-        calculatorHeightConstraint.constant = 500
+        calculatorHeightConstraint.constant = view.frame.width * 1.4
 
     }
 }
