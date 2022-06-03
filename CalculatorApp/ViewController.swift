@@ -24,16 +24,20 @@ class ViewController: UIViewController {
         ["0",".","="],
     ]
     
+    let cellId = "cellId"
+    
     var firstNumber = ""
     var secondNumber = ""
     var calcurateStatus: CalculateStatus = .none
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    }
+    
+    private func setup(){
         calculatorCollectionView.delegate = self
         calculatorCollectionView.dataSource = self
-        calculatorCollectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: "cellId")
+        calculatorCollectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: cellId)
         calculatorHeightConstraint.constant = view.frame.width * 1.4
         calculatorCollectionView.backgroundColor = .clear
         calculatorCollectionView.contentInset = .init(top: 0, left: 14, bottom: 0, right: 14)
@@ -153,7 +157,7 @@ extension ViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = calculatorCollectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! CollectionViewCell
+        let cell = calculatorCollectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! CollectionViewCell
         cell.numberLabel.text = numbers[indexPath.section][indexPath.row]
         
         numbers[indexPath.section][indexPath.row].forEach { numberString in
