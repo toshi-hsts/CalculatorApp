@@ -8,7 +8,10 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    enum CalculateStatus {
+        case none, plus
+    }
+    
     @IBOutlet weak var numberLabel: UILabel!
     @IBOutlet weak var calculatorCollectionView: UICollectionView!
     @IBOutlet weak var calculatorHeightConstraint: NSLayoutConstraint!
@@ -21,6 +24,10 @@ class ViewController: UIViewController {
         ["0",".","="],
     ]
     
+    var firstNumber = ""
+    var secondNumber = ""
+    var calcurateStatus: CalculateStatus = .none
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,9 +39,46 @@ class ViewController: UIViewController {
         calculatorCollectionView.contentInset = .init(top: 0, left: 14, bottom: 0, right: 14)
         view.backgroundColor = .black
     }
+    
+    private func clear(){
+        numberLabel.text = "0"
+        calcurateStatus = .none
+    }
 }
 
 extension ViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let number = numbers[indexPath.section][indexPath.row]
+        
+        if calcurateStatus == .none {
+            switch number {
+            case "0"..."9":
+                numberLabel.text = number
+            case "+":
+                firstNumber = numberLabel.text ?? ""
+                calcurateStatus = .plus
+            case "C":
+                clear()
+            default:
+                break
+            }
+        } else if calcurateStatus == .plus{
+            switch number {
+            case "0"..."9":
+                numberLabel.text = number
+            case "=":
+                secondNumber = numberLabel.text ?? ""
+                
+                let firstNum = Double(firstNumber) ?? 0
+                let secondNum = Double(secondNumber) ?? 0
+                numberLabel.text = String(firstNum + secondNum)
+            case "C":
+                clear()
+            default:
+                break
+            }
+        }
+    }
 }
 
 extension ViewController: UICollectionViewDataSource {
