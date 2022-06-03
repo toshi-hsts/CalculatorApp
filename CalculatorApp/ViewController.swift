@@ -29,8 +29,8 @@ class ViewController: UIViewController {
         calculatorCollectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: "cellId")
         calculatorHeightConstraint.constant = view.frame.width * 1.4
         calculatorCollectionView.backgroundColor = .clear
+        calculatorCollectionView.contentInset = .init(top: 0, left: 14, bottom: 0, right: 14)
         view.backgroundColor = .black
-        
     }
 }
 
@@ -49,6 +49,17 @@ extension ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = calculatorCollectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! CollectionViewCell
         cell.numberLabel.text = numbers[indexPath.section][indexPath.row]
+        
+        numbers[indexPath.section][indexPath.row].forEach { numberString in
+            if "0"..."9" ~= numberString || numberString.description == "."{
+                cell.numberLabel.backgroundColor = .darkGray
+            }else if numberString == "C" || numberString == "%" || numberString == "$"{
+                cell.numberLabel.backgroundColor = UIColor.init(white: 1, alpha: 0.7)
+                cell.numberLabel.textColor = .black
+            }
+        }
+        
+        
         return cell
     }
 }
@@ -59,11 +70,18 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (collectionView.frame.width - 3 * 10) / 4
-        return .init(width: width, height: width)
+        
+        var width: CGFloat = 0
+        width = ((collectionView.frame.width - 10) - 14 * 5) / 4
+        let height = width
+        if indexPath.section == 4 && indexPath.row == 0{
+            width = width * 2 + 14 + 9
+        }
+        
+        return .init(width: width, height: height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
+        return 14
     }
 }
