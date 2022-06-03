@@ -61,92 +61,105 @@ class ViewController: UIViewController {
     }
 }
 
+//MARK: - UICollectionViewDelegate
 extension ViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let number = numbers[indexPath.section][indexPath.row]
         
         switch calcurateStatus {
         case .none:
-            switch number {
-            case "0"..."9":
+            handleFirstNumberSelected(number: number)
+        case .plus, .minus, . multiplication, .division:
+            handleSecondNumberSelected(number: number)
+        }
+    }
+    
+    private func handleFirstNumberSelected(number: String){
+        switch number {
+        case "0"..."9":
+            firstNumber += number
+            numberLabel.text = firstNumber
+            
+            if firstNumber.hasPrefix("0"){
+                firstNumber = ""
+            }
+        case ".":
+            if !confirmIncludeDecimalPoint(){
                 firstNumber += number
                 numberLabel.text = firstNumber
-                
-                if firstNumber.hasPrefix("0"){
-                    firstNumber = ""
-                }
-            case ".":
-                if !confirmIncludeDecimalPoint(){
-                    firstNumber += number
-                    numberLabel.text = firstNumber
-                }
-            case "+":
-                calcurateStatus = .plus
-            case "-":
-                calcurateStatus = .minus
-            case "×":
-                calcurateStatus = .multiplication
-            case "÷":
-                calcurateStatus = .division
-            case "C":
-                clear()
-            default:
-                break
             }
-        case .plus, .minus, . multiplication, .division:
-            switch number {
-            case "0"..."9":
+        case "+":
+            calcurateStatus = .plus
+        case "-":
+            calcurateStatus = .minus
+        case "×":
+            calcurateStatus = .multiplication
+        case "÷":
+            calcurateStatus = .division
+        case "C":
+            clear()
+        default:
+            break
+        }
+    }
+    
+    private func handleSecondNumberSelected(number: String){
+        switch number {
+        case "0"..."9":
+            secondNumber += number
+            numberLabel.text = secondNumber
+            
+            if secondNumber.hasPrefix("0"){
+                secondNumber = ""
+            }
+            
+        case ".":
+            if !confirmIncludeDecimalPoint(){
                 secondNumber += number
                 numberLabel.text = secondNumber
-                
-                if secondNumber.hasPrefix("0"){
-                    secondNumber = ""
-                }
-                
-            case ".":
-                if !confirmIncludeDecimalPoint(){
-                    secondNumber += number
-                    numberLabel.text = secondNumber
-                }
-            case "=":
-                let firstNum = Double(firstNumber) ?? 0
-                let secondNum = Double(secondNumber) ?? 0
-                
-                var resultString: String?
-                
-                switch calcurateStatus {
-                case .plus:
-                    resultString = String(firstNum + secondNum)
-                case .minus:
-                    resultString = String(firstNum - secondNum)
-                case .multiplication:
-                    resultString = String(firstNum * secondNum)
-                case .division:
-                    resultString = String(firstNum / secondNum)
-                default:
-                    break
-                }
-                
-                if let result = resultString, result.hasSuffix(".0"){
-                    resultString = result.replacingOccurrences(of: ".0", with: "")
-                }
-                
-                numberLabel.text = resultString
-                firstNumber = ""
-                secondNumber = ""
-                
-                firstNumber += resultString ?? ""
-                calcurateStatus = .none
-                
-            case "C":
-                clear()
-            default:
-                break
             }
+        case "=":
+            calculateResultNumber()
+        case "C":
+            clear()
+        default:
+            break
         }
+    }
+    
+    private func calculateResultNumber(){
+        let firstNum = Double(firstNumber) ?? 0
+        let secondNum = Double(secondNumber) ?? 0
+        
+        var resultString: String?
+        
+        switch calcurateStatus {
+        case .plus:
+            resultString = String(firstNum + secondNum)
+        case .minus:
+            resultString = String(firstNum - secondNum)
+        case .multiplication:
+            resultString = String(firstNum * secondNum)
+        case .division:
+            resultString = String(firstNum / secondNum)
+        default:
+            break
+        }
+        
+        if let result = resultString, result.hasSuffix(".0"){
+            resultString = result.replacingOccurrences(of: ".0", with: "")
+        }
+        
+        numberLabel.text = resultString
+        firstNumber = ""
+        secondNumber = ""
+        
+        firstNumber += resultString ?? ""
+        calcurateStatus = .none
     }
 }
 
+// MARK: - UICollectionViewDataSource
 extension ViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return numbers.count
@@ -174,6 +187,7 @@ extension ViewController: UICollectionViewDataSource {
     }
 }
 
+// MARK: - UICollectionViewDelegateFlowLayout
 extension ViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return .init(width: collectionView.frame.width, height: 10)
