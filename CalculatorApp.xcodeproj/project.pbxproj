@@ -16,6 +16,7 @@
 		CA4E075C284A0C2C00E70944 /* CalculatorAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4E075B284A0C2C00E70944 /* CalculatorAppTests.swift */; };
 		CA4E0766284A0C2C00E70944 /* CalculatorAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4E0765284A0C2C00E70944 /* CalculatorAppUITests.swift */; };
 		CA4E0768284A0C2C00E70944 /* CalculatorAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4E0767284A0C2C00E70944 /* CalculatorAppUITestsLaunchTests.swift */; };
+		CA4E0775284A323000E70944 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4E0774284A323000E70944 /* CollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		CA4E0761284A0C2C00E70944 /* CalculatorAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CalculatorAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA4E0765284A0C2C00E70944 /* CalculatorAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorAppUITests.swift; sourceTree = "<group>"; };
 		CA4E0767284A0C2C00E70944 /* CalculatorAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		CA4E0774284A323000E70944 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 				CA4E074A284A0C2B00E70944 /* Main.storyboard */,
 				CA4E074D284A0C2C00E70944 /* Assets.xcassets */,
 				CA4E074F284A0C2C00E70944 /* LaunchScreen.storyboard */,
+				CA4E0774284A323000E70944 /* CollectionViewCell.swift */,
 				CA4E0752284A0C2C00E70944 /* Info.plist */,
 			);
 			path = CalculatorApp;
@@ -260,6 +263,7 @@
 			files = (
 				CA4E0749284A0C2B00E70944 /* ViewController.swift in Sources */,
 				CA4E0745284A0C2B00E70944 /* AppDelegate.swift in Sources */,
+				CA4E0775284A323000E70944 /* CollectionViewCell.swift in Sources */,
 				CA4E0747284A0C2B00E70944 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

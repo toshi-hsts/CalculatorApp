@@ -14,11 +14,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var calculatorHeightConstraint: NSLayoutConstraint!
     
     let numbers = [
-        ["1","2","3","4"],
-        ["1","2","3","4"],
-        ["1","2","3","4"],
-        ["1","2","3","4"],
-        ["1","2","3","4"],
+        ["C","%","$","+"],
+        ["7","8","9","×"],
+        ["4","5","6","-"],
+        ["1","2","3","+"],
+        ["0",".","="],
     ]
     
     override func viewDidLoad() {
@@ -26,9 +26,11 @@ class ViewController: UIViewController {
         
         calculatorCollectionView.delegate = self
         calculatorCollectionView.dataSource = self
-        calculatorCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cellId")
+        calculatorCollectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: "cellId")
         calculatorHeightConstraint.constant = view.frame.width * 1.4
-
+        calculatorCollectionView.backgroundColor = .clear
+        view.backgroundColor = .black
+        
     }
 }
 
@@ -45,9 +47,8 @@ extension ViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = calculatorCollectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath)
-        
-        cell.backgroundColor = .blue
+        let cell = calculatorCollectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! CollectionViewCell
+        cell.numberLabel.text = numbers[indexPath.section][indexPath.row]
         return cell
     }
 }

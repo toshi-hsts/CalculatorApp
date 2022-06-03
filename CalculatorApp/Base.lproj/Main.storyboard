@@ -40,22 +40,22 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hG4-0h-dKF">
-                                <rect key="frame" x="0.0" y="402" width="414" height="60"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12345" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hG4-0h-dKF">
+                                <rect key="frame" x="0.0" y="402" width="399" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="uDr-GT-uAm"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="75"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="hOF-fO-nYu" secondAttribute="bottom" id="9v4-Is-Qv7"/>
                             <constraint firstItem="hOF-fO-nYu" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="I9Y-Lr-ePM"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="hG4-0h-dKF" secondAttribute="trailing" id="J0j-qF-5QE"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="hG4-0h-dKF" secondAttribute="trailing" constant="15" id="J0j-qF-5QE"/>
                             <constraint firstItem="hG4-0h-dKF" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="NQm-0b-5cZ"/>
                             <constraint firstItem="hOF-fO-nYu" firstAttribute="top" secondItem="hG4-0h-dKF" secondAttribute="bottom" id="a4t-ep-H35"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="hOF-fO-nYu" secondAttribute="trailing" id="gU5-3b-YjH"/>
@@ -73,9 +73,6 @@
         </scene>
     </scenes>
     <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
