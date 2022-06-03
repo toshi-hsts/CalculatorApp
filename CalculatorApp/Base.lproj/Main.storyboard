@@ -18,8 +18,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hOF-fO-nYu">
-                                <rect key="frame" x="0.0" y="444" width="414" height="418"/>
+                                <rect key="frame" x="0.0" y="462" width="414" height="400"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="400" id="Scr-Fp-d65"/>
+                                </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="zus-kW-ldc">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -38,7 +41,7 @@
                                 </cells>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hG4-0h-dKF">
-                                <rect key="frame" x="0.0" y="384" width="414" height="60"/>
+                                <rect key="frame" x="0.0" y="402" width="414" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="uDr-GT-uAm"/>
                                 </constraints>
@@ -51,7 +54,6 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="hOF-fO-nYu" secondAttribute="bottom" id="9v4-Is-Qv7"/>
-                            <constraint firstItem="hOF-fO-nYu" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="400" id="DKx-eG-5Py"/>
                             <constraint firstItem="hOF-fO-nYu" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="I9Y-Lr-ePM"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="hG4-0h-dKF" secondAttribute="trailing" id="J0j-qF-5QE"/>
                             <constraint firstItem="hG4-0h-dKF" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="NQm-0b-5cZ"/>
