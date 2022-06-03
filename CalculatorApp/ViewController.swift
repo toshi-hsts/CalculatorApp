@@ -9,7 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
     enum CalculateStatus {
-        case none, plus
+        case none, plus, minus, multiplication, division
     }
     
     @IBOutlet weak var numberLabel: UILabel!
@@ -41,6 +41,8 @@ class ViewController: UIViewController {
     }
     
     private func clear(){
+        firstNumber = ""
+        secondNumber = ""
         numberLabel.text = "0"
         calcurateStatus = .none
     }
@@ -50,28 +52,48 @@ extension ViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let number = numbers[indexPath.section][indexPath.row]
         
-        if calcurateStatus == .none {
+        switch calcurateStatus {
+        case .none:
             switch number {
             case "0"..."9":
-                numberLabel.text = number
+                firstNumber += number
+                numberLabel.text = firstNumber
             case "+":
-                firstNumber = numberLabel.text ?? ""
                 calcurateStatus = .plus
+            case "-":
+                calcurateStatus = .minus
+            case "×":
+                calcurateStatus = .multiplication
+            case "÷":
+                calcurateStatus = .division
             case "C":
                 clear()
             default:
                 break
             }
-        } else if calcurateStatus == .plus{
+        case .plus, .minus, . multiplication, .division:
             switch number {
             case "0"..."9":
-                numberLabel.text = number
+                secondNumber += number
+                numberLabel.text = secondNumber
             case "=":
-                secondNumber = numberLabel.text ?? ""
+                
                 
                 let firstNum = Double(firstNumber) ?? 0
                 let secondNum = Double(secondNumber) ?? 0
-                numberLabel.text = String(firstNum + secondNum)
+                
+                switch calcurateStatus {
+                case .plus:
+                    numberLabel.text = String(firstNum + secondNum)
+                case .minus:
+                    numberLabel.text = String(firstNum - secondNum)
+                case .multiplication:
+                    numberLabel.text = String(firstNum * secondNum)
+                case .division:
+                    numberLabel.text = String(firstNum / secondNum)
+                default:
+                    break
+                }
             case "C":
                 clear()
             default:
