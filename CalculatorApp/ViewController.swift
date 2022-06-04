@@ -12,9 +12,9 @@ class ViewController: UIViewController {
         case none, plus, minus, multiplication, division
     }
     
-    @IBOutlet weak var numberLabel: UILabel!
-    @IBOutlet weak var calculatorCollectionView: UICollectionView!
-    @IBOutlet weak var calculatorHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak private var numberLabel: UILabel!
+    @IBOutlet weak private var calculatorCollectionView: UICollectionView!
+    @IBOutlet weak private var calculatorHeightConstraint: NSLayoutConstraint!
     
     let numbers = [
         ["C","%","$","+"],
@@ -32,6 +32,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setup()
     }
     
     private func setup(){
@@ -43,21 +44,6 @@ class ViewController: UIViewController {
         calculatorCollectionView.contentInset = .init(top: 0, left: 14, bottom: 0, right: 14)
         view.backgroundColor = .black
         numberLabel.text = "0"
-    }
-    
-    private func clear(){
-        firstNumber = ""
-        secondNumber = ""
-        numberLabel.text = "0"
-        calcurateStatus = .none
-    }
-    
-    private func confirmIncludeDecimalPoint() -> Bool{
-        if firstNumber.range(of: ".") != nil || firstNumber.count == 0{
-            return true
-        }else{
-            return false
-        }
     }
 }
 
@@ -157,6 +143,21 @@ extension ViewController: UICollectionViewDelegate {
         firstNumber += resultString ?? ""
         calcurateStatus = .none
     }
+    
+    private func confirmIncludeDecimalPoint() -> Bool{
+        if firstNumber.range(of: ".") != nil || firstNumber.count == 0{
+            return true
+        }else{
+            return false
+        }
+    }
+    
+    private func clear(){
+        firstNumber = ""
+        secondNumber = ""
+        numberLabel.text = "0"
+        calcurateStatus = .none
+    }
 }
 
 // MARK: - UICollectionViewDataSource
@@ -181,7 +182,6 @@ extension ViewController: UICollectionViewDataSource {
                 cell.numberLabel.textColor = .black
             }
         }
-        
         
         return cell
     }

@@ -8,7 +8,6 @@
 import UIKit
 
 class CollectionViewCell: UICollectionViewCell {
-    
     let numberLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
@@ -23,8 +22,8 @@ class CollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(numberLabel)
-        numberLabel.frame.size = self.frame.size
-        numberLabel.layer.cornerRadius = self.frame.height / 2
+        numberLabel.frame.size = self.bounds.size
+        numberLabel.layer.cornerRadius = self.bounds.height / 2
     }
     
     override var isHighlighted: Bool{
