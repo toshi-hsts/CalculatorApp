@@ -1,6 +1,7 @@
 # CalculatorApp
 iPhone標準搭載の模倣アプリ
 <br><br>
-<img src="https://user-images.githubusercontent.com/80573353/171992289-d6f95b8d-681e-4931-bb36-e8a1c953cc52.PNG" width="480">
+<img src="https://user-images.githubusercontent.com/80573353/180996815-407d7d6f-bd4b-4f93-a118-c77cbeb3c7a5.gif" width="240">
+
 ## 備考
-「＄」と」「％」は利用不可です。。
+「＄」と」「％」はいまのところ利用不可
